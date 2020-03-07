@@ -38,15 +38,20 @@ var config = {
 			module: "updatenotification",
 			position: "top_bar"
 		},
-		/*{
-			module: "MMM-Youtube-API",
-			position: "top_center"
-        },*/
 		{
 			module: "clock",
 			position: "top_center"
 		},
 		{
+			module: "custom/MMM-EmbedYoutube", // Path to youtube module from modules folder Exmaple: MagicMirror/modules/custom/MMM-EmbedYoutube/ so it's custom/MMM-EmbedYoutube
+			position: "top_left",	// This can be any of the regions.
+			config: {
+				// See 'Configuration options' in README.md for more information.
+				video_id: "w3jLJU7DT5E",
+				loop: true
+			}
+		},
+		/*{
 			module: "calendar",
 			header: "US Holidays",
 			position: "top_left",
@@ -57,7 +62,7 @@ var config = {
 						url: "webcal://www.calendarlabs.com/ical-calendar/ics/76/US_Holidays.ics"					}
 				]
 			}
-		},
+		},*/
 		{
 			module: "compliments",
 			position: "lower_third"
