@@ -43,7 +43,7 @@ var config = {
 			position: "top_center"
 		},
 		{
-			module: "custom/MMM-EmbedYoutube", // Path to youtube module from modules folder Exmaple: MagicMirror/modules/custom/MMM-EmbedYoutube/ so it's custom/MMM-EmbedYoutube
+			module: "third_party/MMM-EmbedYoutube", // Path to youtube module from modules folder Exmaple: MagicMirror/modules/custom/MMM-EmbedYoutube/ so it's custom/MMM-EmbedYoutube
 			position: "top_left",	// This can be any of the regions.
 			config: {
 				// See 'Configuration options' in README.md for more information.
