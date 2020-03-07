@@ -38,11 +38,11 @@ var config = {
 			module: "updatenotification",
 			position: "top_bar"
 		},
-		{
+		/*{
 			module: "MMM-Youtube-API",
 			position: "top_center"
-        },
-		/*{
+        },*/
+		{
 			module: "clock",
 			position: "top_left"
 		},
@@ -57,7 +57,7 @@ var config = {
 						url: "webcal://www.calendarlabs.com/ical-calendar/ics/76/US_Holidays.ics"					}
 				]
 			}
-		},*/
+		},
 		{
 			module: "compliments",
 			position: "lower_third"
@@ -101,7 +101,7 @@ var config = {
 			module: "helloworld",
 			position: "bottom_bar",
 			config:{
-				text: "Hello Bro!"
+				text: "Hello Joezie and Elaine!"
 			}
 		}
 	]
