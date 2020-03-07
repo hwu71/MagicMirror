@@ -1,0 +1,3 @@
+[submodule "modules/third_party/MMM-EmbedYoutube"]
+	path = modules/third_party/MMM-EmbedYoutube
+	url = https://github.com/nitpum/MMM-EmbedYoutube.git
