@@ -66,8 +66,9 @@ Temporary Items
 !/modules/README.md**
 
 # Joezie: add exception of custom modules
-!/modules/custom
-!/modules/custom/**
+!/modules/third_party
+!/modules/third_party/**
+!/modules/third_party/**/*
 
 # Ignore changes to the custom css files.
 /css/custom.css
