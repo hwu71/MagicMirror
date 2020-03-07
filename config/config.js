@@ -48,7 +48,8 @@ var config = {
 			config: {
 				// See 'Configuration options' in README.md for more information.
 				video_id: "w3jLJU7DT5E",
-				loop: true
+				loop: true,
+				autoplay: true
 			}
 		},
 		/*{
