@@ -56,10 +56,6 @@ var config = {
 			module: "third_party/MMM-COVID19",
 			position: "top_left",	// This can be any of the regions.
 			config: {
-				updateInterval: 300000,
-				worldStats: true,
-				countries: [ "Argentina", "China", "Italy", "Spain" ],
-				headerRowClass: "small",
 				rapidapiKey: "5abcaaa7a1mshcfa66b90783c879p1d4fd4jsn78fdde0478ef"
 			}
 		},
