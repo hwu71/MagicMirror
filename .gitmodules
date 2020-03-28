@@ -1,3 +1,6 @@
 [submodule "modules/third_party/MMM-EmbedYoutube"]
 	path = modules/third_party/MMM-EmbedYoutube
 	url = https://github.com/nitpum/MMM-EmbedYoutube.git
+[submodule "modules/third_party/MMM-COVID19"]
+	path = modules/third_party/MMM-COVID19
+	url = https://github.com/bibaldo/MMM-COVID19.git
