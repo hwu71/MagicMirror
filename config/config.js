@@ -71,7 +71,7 @@ var config = {
 				stocks: 'MSFT,AAPL,GOOG,INTC,AMZN', // stock symbols
 				updateInterval: 37000 // update interval in milliseconds
 			}
-		}
+		},
 		/*{
 			module: "calendar",
 			header: "US Holidays",
