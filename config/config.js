@@ -54,7 +54,7 @@ var config = {
 		},
 		{
 			module: "third_party/MMM-COVID19",
-			position: "top_left",	// This can be any of the regions.
+			position: "left",	// This can be any of the regions.
 			config: {
 				worldStats: true,
 				countries: [ "China", "USA", "Italy", "Japan", "Iran", "S. Korea" ],
@@ -65,7 +65,7 @@ var config = {
     		module: "third_party/MMM-Stock",
     		position: "bottom_left",
     		config: {
-    			companies: ["MSFT", "GOOG", "FB", "AAPL", "ZM", "AMAZON"]
+    			companies: ["MSFT", "GOOG", "FB", "AAPL", "ZM"]
     		}
 		},
 		/*{
