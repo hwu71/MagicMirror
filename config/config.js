@@ -62,12 +62,12 @@ var config = {
 			}
 		},
 		{
-    		module: "MMM-Stock",
+    		module: "third_party/MMM-Stock",
     		position: "bottom_left",
     		config: {
     			companies: ["MSFT", "GOOG", "ORCL", "FB", "AAPL"]
     		}
-		}
+		},
 		/*{
 			module: "calendar",
 			header: "US Holidays",
