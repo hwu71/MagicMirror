@@ -56,10 +56,22 @@ var config = {
 			module: "third_party/MMM-COVID19",
 			position: "top_left",	// This can be any of the regions.
 			config: {
+				worldStats: true,
 				countries: [ "China", "USA", "Italy", "Japan", "Iran", "S. Korea" ],
 				rapidapiKey: "5abcaaa7a1mshcfa66b90783c879p1d4fd4jsn78fdde0478ef"
 			}
 		},
+		{
+			module: 'MMM-stocks',
+			position: 'bottom_left',
+			config: {
+				apiKey: 'pk_ce08cedebf87412ea70f45f896627adb', // api token from https://iexcloud.io/
+				crypto: 'BTCUSDT', // crypto symbols
+				separator: '&nbsp;&nbsp;•&nbsp;&nbsp;', // separator between stocks
+				stocks: 'MSFT,AAPL,GOOG,INTC,AMZN', // stock symbols
+				updateInterval: 37000 // update interval in milliseconds
+			}
+		}
 		/*{
 			module: "calendar",
 			header: "US Holidays",
