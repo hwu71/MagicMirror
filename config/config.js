@@ -63,7 +63,7 @@ var config = {
 		},
 		{
 			module: 'MMM-stocks',
-			position: 'bottom_left',
+			position: 'bottom_bar',
 			config: {
 				apiKey: 'pk_ce08cedebf87412ea70f45f896627adb', // api token from https://iexcloud.io/
 				crypto: 'BTCUSDT', // crypto symbols
