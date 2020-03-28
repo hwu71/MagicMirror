@@ -4,6 +4,3 @@
 [submodule "modules/third_party/MMM-COVID19"]
 	path = modules/third_party/MMM-COVID19
 	url = https://github.com/bibaldo/MMM-COVID19.git
-[submodule "modules/third_party/MMM-stocks"]
-	path = modules/third_party/MMM-stocks
-	url = https://github.com/Elaniobro/MMM-stocks.git
