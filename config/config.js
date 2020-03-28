@@ -65,7 +65,7 @@ var config = {
     		module: "third_party/MMM-Stock",
     		position: "bottom_left",
     		config: {
-    			companies: ["MSFT", "GOOG", "ORCL", "FB", "AAPL"]
+    			companies: ["MSFT", "GOOG", "ORCL", "FB", "AAPL", "AMZN"]
     		}
 		},
 		/*{
