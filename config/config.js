@@ -61,6 +61,13 @@ var config = {
 				rapidapiKey: "5abcaaa7a1mshcfa66b90783c879p1d4fd4jsn78fdde0478ef"
 			}
 		},
+		{
+    		module: "MMM-Stock",
+    		position: "bottom_left",
+    		config: {
+    			companies: ["MSFT", "GOOG", "ORCL", "FB", "AAPL"]
+    		}
+		}
 		/*{
 			module: "calendar",
 			header: "US Holidays",
