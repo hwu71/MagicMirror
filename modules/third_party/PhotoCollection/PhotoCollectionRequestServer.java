@@ -23,6 +23,9 @@ public class PhotoCollectionRequestServer {
 
                 // 2.1 Wait for new connection from client
                 Socket socket = server.acceptConnection(serverSocket);
+				
+				//////////////////////////////////////////
+				System.out.println("Accept a socket!");
 
                 // 2.2 Create a new thread to handle the request
                 PhotoCollectionRequestHandler handler = new PhotoCollectionRequestHandler(socket);
@@ -62,19 +65,11 @@ public class PhotoCollectionRequestServer {
         }
 
         // TODO: remove these debug info output below
-        String hostName = "";
-        try {
+        String hostAddr = "";
+        hostAddr = serverSocket.getInetAddress().getHostAddress();
 
-            hostName = InetAddress.getLocalHost().getHostAddress();
-
-        } catch (UnknownHostException e) {
-
-            System.err.println("ERROR: Unknown host!");
-            throw e;
-
-        }
         int portNum = serverSocket.getLocalPort();
-        System.out.println("***Server is listening on host " + hostName + " at port " + portNum);
+        System.out.println("***Server is listening on host " + hostAddr + " at port " + portNum);
         // TODO: remove these debug info output above
 
 
