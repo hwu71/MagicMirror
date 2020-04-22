@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -49,7 +50,8 @@ public class PhotoCollectionRequestServer {
 
         try {
 
-            serverSocket = new ServerSocket(portNum);
+            serverSocket = new ServerSocket();
+			serverSocket.bind(new InetSocketAddress("192.168.137.239", 2540));
 
         } catch (IOException e) {
 
