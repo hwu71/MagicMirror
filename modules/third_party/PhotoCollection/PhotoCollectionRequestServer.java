@@ -53,8 +53,9 @@ public class PhotoCollectionRequestServer {
 
         try {
 
-            serverSocket = new ServerSocket();
-			serverSocket.bind(new InetSocketAddress("192.168.137.239", 2540));
+			serverSocket = new ServerSocket(portNum);
+            // serverSocket = new ServerSocket();
+			// serverSocket.bind(new InetSocketAddress("192.168.137.239", 2540));
 
         } catch (IOException e) {
 
@@ -64,12 +65,30 @@ public class PhotoCollectionRequestServer {
 
         }
 
+		/*
         // TODO: remove these debug info output below
         String hostAddr = "";
         hostAddr = serverSocket.getInetAddress().getHostAddress();
 
         int portNum = serverSocket.getLocalPort();
         System.out.println("***Server is listening on host " + hostAddr + " at port " + portNum);
+        // TODO: remove these debug info output above
+		*/
+		
+		// TODO: remove these debug info output below
+        String hostName = "";
+        try {
+
+            hostName = InetAddress.getLocalHost().getHostAddress();
+
+        } catch (UnknownHostException e) {
+
+            System.err.println("ERROR: Unknown host!");
+            throw e;
+
+        }
+        int portNum = serverSocket.getLocalPort();
+        System.out.println("***Server is listening on host " + hostName + " at port " + portNum);
         // TODO: remove these debug info output above
 
 
