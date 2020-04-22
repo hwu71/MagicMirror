@@ -1,5 +1,5 @@
 import java.io.IOException;
-import java.net.InetAddress;
+import java.net.Inet4Address;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -79,7 +79,7 @@ public class PhotoCollectionRequestServer {
         String hostName = "";
         try {
 
-            hostName = InetAddress.getLocalHost().getHostAddress();
+            hostName = Inet4Address.getLocalHost().getHostAddress();
 
         } catch (UnknownHostException e) {
 
