@@ -72,7 +72,7 @@ public class ReloadConfigRequestHandler implements Runnable {
         }
 
         // run a process to trigger config.js generation shell script with given username
-		if (username != null && (usingUser.equals(UNDEFINED) || usingUser.equals(username)) {
+		if (username != null && (usingUser.equals(UNDEFINED) || usingUser.equals(username))) {
 			
 			System.out.println("Serving " + username + "...");
 			
