@@ -173,8 +173,9 @@ def main(user_name):
         file.write(tail_text)
         file.close()
 
-        # copy it to config.js
+        # copy it to config.js and then delete it
         shutil.copy(filename,'config.js')
+		os.remove(filename)
 if __name__ == '__main__':
     try:
         name = sys.argv[1]
