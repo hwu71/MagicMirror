@@ -43,6 +43,11 @@ public class ReloadConfigRequestHandler implements Runnable {
         try {
 
             final int usernameLength = inputFromClient.readInt();
+			
+			////////////////////////////
+			System.out.println("***usernameLength:" + usernameLength);
+			////////////////////////////
+			
             final byte[] ch = new byte[1024];
             int lenTotal = 0, len = 0;
             while (lenTotal < usernameLength && len != -1) {
@@ -59,6 +64,11 @@ public class ReloadConfigRequestHandler implements Runnable {
             e.printStackTrace();
 
         }
+		
+		
+		////////////////////////////
+		System.out.println("***username:" + username);
+		////////////////////////////
 
         // TODO: trigger config.js generation shell script with given username;
         //       only trigger if username is not null
