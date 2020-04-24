@@ -71,8 +71,6 @@ public class PhotoCollectionRequestHandler implements Runnable {
 
         }
 		
-		System.out.println("username: " + username); ////////////////////////
-		
 
         // TODO: trigger photo collection shell script and collect photos for this user
         //       and don't forget to update triggerSuccessFlag
@@ -81,9 +79,9 @@ public class PhotoCollectionRequestHandler implements Runnable {
 			
 			final ProcessBuilder builder = new ProcessBuilder();
 			
-			// import cv environment
-			System.out.println("Importing...");
-			builder.command("source", "~/.profile;", "workon", "cv");
+			// collect face photos
+			System.out.println("Collecting face photos...");
+			builder.command("bash", registerScript, username);
 			try {
 				
 				final Process process = builder.start();
@@ -101,7 +99,7 @@ public class PhotoCollectionRequestHandler implements Runnable {
 
 			}
 			
-			// collect face photos
+			
 			
 			
 			
