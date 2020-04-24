@@ -9,11 +9,7 @@ public class ReloadConfigRequestHandler implements Runnable {
 
     // connection to app side client
     private final Socket socket;
-    private DataInputStream inputFromClient;
-    private DataOutputStream outputToClient;
-	
-	///////////////////
-	private BufferedReader in;
+	private BufferedReader inputFromClient;
 
     ReloadConfigRequestHandler(final Socket socket) {
 
@@ -21,18 +17,12 @@ public class ReloadConfigRequestHandler implements Runnable {
 
         try {
 
-            // inputFromClient = new DataInputStream(socket.getInputStream());
-            outputToClient = new DataOutputStream(socket.getOutputStream());
-			
-			////////////////
-			in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
-
+			inputFromClient = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
 
         }
         catch (IOException e) {
 
             inputFromClient = null;
-            outputToClient = null;
             e.printStackTrace();
 
         }
@@ -51,9 +41,8 @@ public class ReloadConfigRequestHandler implements Runnable {
         // receive a reload message with username and its length from client
         try {
 
-            // final int usernameLength = inputFromClient.readInt();
-			
-			final int usernameLength = Integer.valueOf(in.readLine());////////////////////
+			final int usernameLength = Integer.valueOf(
+				inputFromClient.readLine());
 			
 			////////////////////////////
 			System.out.println("***usernameLength:" + usernameLength);
@@ -65,7 +54,7 @@ public class ReloadConfigRequestHandler implements Runnable {
             while (lenTotal < usernameLength && len != -1) {
 
                 // len = inputFromClient.read(ch, lenTotal, usernameLength);
-				len = in.read(ch, lenTotal, usernameLength);///////////////////
+				len = inputFromClient.read(ch, lenTotal, usernameLength);///////////////////
                 if (len != -1)
                     lenTotal += len;
 
