@@ -1,0 +1,3 @@
+dataset/*
+encodings.pickle
+*.class
