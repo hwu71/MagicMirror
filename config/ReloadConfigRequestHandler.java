@@ -7,6 +7,10 @@ import java.net.Socket;
 import java.lang.ProcessBuilder;
 
 public class ReloadConfigRequestHandler implements Runnable {
+	
+	// the user that is using the smart mirror
+	private String usingUser;
+	private static final String UNDEFINED = "undefined";
 
 	// config file generation script
 	private static final String configGenerationScript = "generate_config.py";
@@ -16,6 +20,8 @@ public class ReloadConfigRequestHandler implements Runnable {
 	private BufferedReader inputFromClient;
 
     ReloadConfigRequestHandler(final Socket socket) {
+		
+		usingUser = UNDEFINED;
 
         this.socket = socket;
 
@@ -64,11 +70,11 @@ public class ReloadConfigRequestHandler implements Runnable {
             e.printStackTrace();
 
         }
-		
-		System.out.println("Serving " + username + "...");
 
         // run a process to trigger config.js generation shell script with given username
-		if (username != null) {
+		if (username != null && (usingUser.equals(UNDEFINED) || usingUser.equals(username)) {
+			
+			System.out.println("Serving " + username + "...");
 			
 			final ProcessBuilder builder = new ProcessBuilder();
 			builder.command("python", configGenerationScript, username);
