@@ -96,7 +96,7 @@ public class PhotoCollectionRequestHandler implements Runnable {
 				triggerSuccessFlag = false;
 
 			}
-			
+			/*
 			if (triggerSuccessFlag) {
 				
 				// train dataset
@@ -120,6 +120,7 @@ public class PhotoCollectionRequestHandler implements Runnable {
 				}
 				
 			}
+			*/
 			
 		} else {
 			
