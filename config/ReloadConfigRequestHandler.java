@@ -75,6 +75,7 @@ public class ReloadConfigRequestHandler implements Runnable {
 		if (username != null && (usingUser.equals(UNDEFINED) || usingUser.equals(username))) {
 			
 			System.out.println("Serving " + username + "...");
+			usingUser = username;
 			
 			final ProcessBuilder builder = new ProcessBuilder();
 			builder.command("python", configGenerationScript, username);
