@@ -126,7 +126,12 @@ public class PhotoCollectionRequestHandler implements Runnable {
 			triggerSuccessFlag = false;
 			
 		}
-
+		
+		if (triggerSuccessFlag)
+			System.out.println("Collection success!");
+		else
+			System.out.println("Collection failed!");
+			
         // reply a confirmation message to client
         try {
 
