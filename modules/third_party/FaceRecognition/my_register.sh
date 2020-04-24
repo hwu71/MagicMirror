@@ -10,8 +10,12 @@ fi
 user_name=$1
 #cd "/home/pi/pi-face-recognition"
 path="dataset/"
+if [ ! -d "${path}" ]; then
+  echo -e "Directory ${path} DOES NOT exist, create a ${path} directory...\n"
+fi
+
 if [ ! -d "${path}${user_name}" ]; then
-  echo -e "Directory ${user_name} DOES NOT exists, create a ${user_name} directory...\n"
+  echo -e "Directory ${user_name} DOES NOT exist, create a ${user_name} directory...\n"
 else 
   echo -e "Directory ${user_name} ALREADY exists, rewrite the ${user_name} directory...\n"
   rm -rf ${path}${user_name} 
