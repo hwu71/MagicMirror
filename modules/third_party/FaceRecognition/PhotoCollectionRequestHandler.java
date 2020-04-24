@@ -71,6 +71,9 @@ public class PhotoCollectionRequestHandler implements Runnable {
             triggerSuccessFlag = false;
 
         }
+		
+		System.out.println("username: " + username); ////////////////////////
+		
 
         // TODO: trigger photo collection shell script and collect photos for this user
         //       and don't forget to update triggerSuccessFlag
@@ -81,7 +84,7 @@ public class PhotoCollectionRequestHandler implements Runnable {
 			
 			// import cv environment
 			System.out.println("Running " + importScript + "...");
-			builder.command(".", importScript);
+			builder.command(importScript);
 			try {
 				
 				final Process process = builder.start();
@@ -105,6 +108,8 @@ public class PhotoCollectionRequestHandler implements Runnable {
 			
 			
 			// train dataset
+			
+			triggerSuccessFlag = true;
 			
 		} else {
 			
