@@ -7,7 +7,6 @@ import java.lang.ProcessBuilder;
 public class PhotoCollectionRequestHandler implements Runnable {
 	
 	// shell script names
-	private static final String importScript = "my_import.sh";
 	private static final String registerScript = "my_register.sh";
 	private static final String encodeScript = "my_encode.sh";
 	private static final String recognitionScript = "my_recog_run.sh";
@@ -83,8 +82,8 @@ public class PhotoCollectionRequestHandler implements Runnable {
 			final ProcessBuilder builder = new ProcessBuilder();
 			
 			// import cv environment
-			System.out.println("Running " + importScript + "...");
-			builder.command(importScript);
+			System.out.println("Importing...");
+			builder.command("source", "~/.profile;", "workon", "cv");
 			try {
 				
 				final Process process = builder.start();
