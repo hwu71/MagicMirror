@@ -48,13 +48,11 @@ public class ReloadConfigRequestHandler implements Runnable {
 			System.out.println("***usernameLength:" + usernameLength);
 			////////////////////////////
 			
-            // final byte[] ch = new byte[1024];
 			final char[] ch = new char[1024];//////////
             int lenTotal = 0, len = 0;
             while (lenTotal < usernameLength && len != -1) {
 
-                // len = inputFromClient.read(ch, lenTotal, usernameLength);
-				len = inputFromClient.read(ch, lenTotal, usernameLength);///////////////////
+				len = inputFromClient.read(ch, lenTotal, usernameLength);
                 if (len != -1)
                     lenTotal += len;
 
