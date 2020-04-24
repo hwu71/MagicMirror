@@ -12,6 +12,7 @@ user_name=$1
 path="dataset/"
 if [ ! -d "${path}" ]; then
   echo -e "Directory ${path} DOES NOT exist, create a ${path} directory...\n"
+  mkdir ${path}
 fi
 
 if [ ! -d "${path}${user_name}" ]; then
