@@ -4,8 +4,12 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.lang.ProcessBuilder;
 
 public class ReloadConfigRequestHandler implements Runnable {
+
+	// config file generation script
+	private static final String configGenerationScript = "generate_config.py";
 
     // connection to app side client
     private final Socket socket;
@@ -44,11 +48,7 @@ public class ReloadConfigRequestHandler implements Runnable {
 			final int usernameLength = Integer.valueOf(
 				inputFromClient.readLine());
 			
-			////////////////////////////
-			System.out.println("***usernameLength:" + usernameLength);
-			////////////////////////////
-			
-			final char[] ch = new char[1024];//////////
+			final char[] ch = new char[1024];
             int lenTotal = 0, len = 0;
             while (lenTotal < usernameLength && len != -1) {
 
@@ -65,15 +65,34 @@ public class ReloadConfigRequestHandler implements Runnable {
 
         }
 		
+		System.out.println("Serving " + username + "...");
+
+        // run a process to trigger config.js generation shell script with given username
+		if (username != null) {
+			
+			final ProcessBuilder builder = new ProcessBuilder();
+			builder.command("python", configGenerationScript, username);
+			try {
+				
+				final Process process = builder.start();
+				final int exitVal = process.waitFor();
+				
+				if (exitVal == 0)
+					System.out.println("Reloaded config.js for " + username + "!");
+				else
+					System.out.println("Failed to reload config.js for " + username + "!");
+				
+			} catch (IOException | InterruptedException e) {
+				
+				e.printStackTrace();
+				System.out.println("Failed to reload config.js for " + username + "!");
+
+			}
+			
+		}
 		
-		////////////////////////////
-		System.out.println("***username:" + username);
-		////////////////////////////
-
-        // TODO: trigger config.js generation shell script with given username;
-        //       only trigger if username is not null
-		System.out.println("Pretending running config generation...");
-
+		// TODO: refresh smart mirror webpage
+		
     }
 
 }
