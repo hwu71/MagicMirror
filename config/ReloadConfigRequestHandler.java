@@ -1,6 +1,8 @@
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.Socket;
 
 public class ReloadConfigRequestHandler implements Runnable {
@@ -9,6 +11,9 @@ public class ReloadConfigRequestHandler implements Runnable {
     private final Socket socket;
     private DataInputStream inputFromClient;
     private DataOutputStream outputToClient;
+	
+	///////////////////
+	private BufferedReader in;
 
     ReloadConfigRequestHandler(final Socket socket) {
 
@@ -16,8 +21,12 @@ public class ReloadConfigRequestHandler implements Runnable {
 
         try {
 
-            inputFromClient = new DataInputStream(socket.getInputStream());
+            // inputFromClient = new DataInputStream(socket.getInputStream());
             outputToClient = new DataOutputStream(socket.getOutputStream());
+			
+			////////////////
+			in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
+
 
         }
         catch (IOException e) {
@@ -42,17 +51,21 @@ public class ReloadConfigRequestHandler implements Runnable {
         // receive a reload message with username and its length from client
         try {
 
-            final int usernameLength = inputFromClient.readInt();
+            // final int usernameLength = inputFromClient.readInt();
+			
+			final int usernameLength = Integer.valueOf(in.readLine());////////////////////
 			
 			////////////////////////////
 			System.out.println("***usernameLength:" + usernameLength);
 			////////////////////////////
 			
-            final byte[] ch = new byte[1024];
+            // final byte[] ch = new byte[1024];
+			final char[] ch = new char[1024];//////////
             int lenTotal = 0, len = 0;
             while (lenTotal < usernameLength && len != -1) {
 
-                len = inputFromClient.read(ch, lenTotal, usernameLength);
+                // len = inputFromClient.read(ch, lenTotal, usernameLength);
+				len = in.read(ch, lenTotal, usernameLength);///////////////////
                 if (len != -1)
                     lenTotal += len;
 
