@@ -23,6 +23,13 @@ public class ReloadConfigRequestServer {
 
                 // 2.1 Wait for new connection from client
                 Socket socket = server.acceptConnection(serverSocket);
+				
+				// TODO: remove debug info output below
+				
+				System.out.println("Client's IP Address is " + 
+					socket.getInetAddress().getHostAddress());
+					
+				// TODO: remove debug info output above
 
                 // 2.2 Create a new thread to handle the request
                 ReloadConfigRequestHandler handler = new ReloadConfigRequestHandler(socket);
