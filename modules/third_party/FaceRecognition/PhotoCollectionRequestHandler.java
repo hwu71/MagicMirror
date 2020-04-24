@@ -72,9 +72,7 @@ public class PhotoCollectionRequestHandler implements Runnable {
         }
 		
 
-        // TODO: trigger photo collection shell script and collect photos for this user
-        //       and don't forget to update triggerSuccessFlag
-        //       only trigger if username is not null
+        // trigger shell scripts to collect face photos and train dataset
 		if (username != null) {
 			
 			final ProcessBuilder builder = new ProcessBuilder();
@@ -99,23 +97,35 @@ public class PhotoCollectionRequestHandler implements Runnable {
 
 			}
 			
-			
-			
-			
-			
-			
-			// train dataset
-			
-			triggerSuccessFlag = true;
+			if (triggerSuccessFlag) {
+				
+				// train dataset
+				System.out.println("Training dataset...");
+				builder.command("bash", encodeScript);
+				try {
+					
+					final Process process = builder.start();
+					final int exitVal = process.waitFor();
+					
+					if (exitVal == 0)
+						triggerSuccessFlag = true;
+					else
+						triggerSuccessFlag = false;
+					
+				} catch (IOException | InterruptedException e) {
+					
+					e.printStackTrace();
+					triggerSuccessFlag = false;
+
+				}
+				
+			}
 			
 		} else {
 			
 			triggerSuccessFlag = false;
 			
 		}
-		
-		
-		
 
         // reply a confirmation message to client
         try {
