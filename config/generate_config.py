@@ -55,6 +55,13 @@ class DB():
         self.conn.close()
 
 def main(user_name):
+	if user_name == "Unknown":
+		if os.path.exists('config_default.js.bak') == true:
+			shutil.copy('config_default.js.bak','config.js')
+		else:
+			print("Error: config_default.js.bak not exists!")
+			return
+
     with DB() as db:
         db.read_user_table(user_name=user_name)
         #db.print()
@@ -173,9 +180,8 @@ def main(user_name):
         file.write(tail_text)
         file.close()
 
-        # copy it to config.js and then delete it
+        # rename it to config.js
         shutil.move(filename,'config.js')
-        #os.remove(filename)
 if __name__ == '__main__':
     try:
         name = sys.argv[1]
