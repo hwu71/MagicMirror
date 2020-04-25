@@ -189,6 +189,6 @@ if __name__ == '__main__':
         main(name)
     except:
         print ('Usage: python generate_config.py user_name')
-        track = trackback.format_exc()
+        track = traceback.format_exc()
         print (track)
         sys.exit(2)
