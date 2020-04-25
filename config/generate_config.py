@@ -4,6 +4,7 @@ import pandas as pd
 import sys
 import shutil
 import traceback
+import os
 
 position_dist = {1: 'top_bar',
                  21: 'top_left',
