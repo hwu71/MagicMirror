@@ -62,7 +62,7 @@ def main(user_name):
             shutil.copy('config_default.js.bak','config.js')
         else:
             print("Error: config_default.js.bak not exists!")
-            return
+        return
 
     with DB() as db:
         db.read_user_table(user_name=user_name)
