@@ -3,6 +3,7 @@ import pymysql
 import pandas as pd
 import sys
 import shutil
+import traceback
 
 position_dist = {1: 'top_bar',
                  21: 'top_left',
@@ -188,4 +189,6 @@ if __name__ == '__main__':
         main(name)
     except:
         print ('Usage: python generate_config.py user_name')
+        track = trackback.format_exc()
+        print (track)
         sys.exit(2)
