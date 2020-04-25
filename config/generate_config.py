@@ -3,6 +3,8 @@ import pymysql
 import pandas as pd
 import sys
 import shutil
+import traceback
+import os
 
 position_dist = {1: 'top_bar',
                  21: 'top_left',
@@ -55,6 +57,14 @@ class DB():
         self.conn.close()
 
 def main(user_name):
+    if user_name == "Unknown":
+        if os.path.exists('config_default.js.bak') == True:
+            shutil.copy('config_default.js.bak','config.js')
+            print("Use default config.js")
+        else:
+            print("Error: config_default.js.bak not exists!")
+        return
+
     with DB() as db:
         db.read_user_table(user_name=user_name)
         #db.print()
@@ -173,13 +183,14 @@ def main(user_name):
         file.write(tail_text)
         file.close()
 
-        # copy it to config.js and then delete it
+        # rename it to config.js
         shutil.move(filename,'config.js')
-        #os.remove(filename)
 if __name__ == '__main__':
     try:
         name = sys.argv[1]
         main(name)
     except:
         print ('Usage: python generate_config.py user_name')
+        track = traceback.format_exc()
+        print (track)
         sys.exit(2)
