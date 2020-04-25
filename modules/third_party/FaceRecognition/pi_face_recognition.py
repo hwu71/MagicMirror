@@ -24,7 +24,10 @@ args = vars(ap.parse_args())
 # load the known faces and embeddings along with OpenCV's Haar
 # cascade for face detection
 print("[INFO] loading encodings + face detector...")
+#my_path='/home/pi/MagicMirror/modules/third_party/FaceRecognition/encodings.pickle'
+#my_file = open(my_path, "rb")
 data = pickle.loads(open(args["encodings"], "rb").read())
+#data = pickle.loads(my_file.read())
 detector = cv2.CascadeClassifier(args["cascade"])
 
 # initialize the video stream and allow the camera sensor to warm up

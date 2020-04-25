@@ -1,1 +1,1 @@
-python pi_face_recognition.py --cascade haarcascade_frontalface_default.xml --encodings encodings.pickle
+python /home/pi/MagicMirror/modules/third_party/FaceRecognition/pi_face_recognition.py --cascade /home/pi/MagicMirror/modules/third_party/FaceRecognition/haarcascade_frontalface_default.xml --encodings /home/pi/MagicMirror/modules/third_party/FaceRecognition/encodings.pickle
