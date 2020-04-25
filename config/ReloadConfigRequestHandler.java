@@ -8,20 +8,20 @@ import java.lang.ProcessBuilder;
 
 public class ReloadConfigRequestHandler implements Runnable {
 	
-	// the user that is using the smart mirror
-	private String usingUser;
+	// indicate no user at cold start
 	private static final String UNDEFINED = "undefined";
 
 	// config file generation script
 	private static final String configGenerationScript = "generate_config.py";
+	
+	// the user that is using the smart mirror
+	private static volatile String usingUser = UNDEFINED;
 
     // connection to app side client
     private final Socket socket;
 	private BufferedReader inputFromClient;
 
     ReloadConfigRequestHandler(final Socket socket) {
-		
-		usingUser = UNDEFINED;
 
         this.socket = socket;
 
