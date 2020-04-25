@@ -60,7 +60,7 @@ def main(user_name):
     if user_name == "Unknown":
         if os.path.exists('config_default.js.bak') == True:
             shutil.copy('config_default.js.bak','config.js')
-			print("Use default config.js")
+            print("Use default config.js")
         else:
             print("Error: config_default.js.bak not exists!")
         return
