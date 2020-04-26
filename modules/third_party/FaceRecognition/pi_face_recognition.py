@@ -163,7 +163,7 @@ success_status = connection_to_server.recv(1)
 if success_status == 0:
 	print("Failed to reload config on cloud server")
 else:
-	os.system("bash my_refresh.sh")
+	os.system("bash /home/pi/MagicMirror/modules/third_party/FaceRecognition/my_refresh.sh")
 	print("Refreshed smart mirror!")
 
 
