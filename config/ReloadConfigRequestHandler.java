@@ -13,6 +13,11 @@ public class ReloadConfigRequestHandler implements Runnable {
 	private static final int MODULE_UPDATE = 1;
 	private static final int LOGIN = 2;
 	
+	// reload config status
+	private static final int RELOAD_FAILED = -1;
+	private static final int USER_MISMATCHED = 0;
+	private static final int USER_MATCHED = 1;
+	
 	// indicate no user at cold start
 	private static final String UNDEFINED = "undefined";
 
@@ -116,7 +121,7 @@ public class ReloadConfigRequestHandler implements Runnable {
 
 			}
 			
-		} else {
+		} else if (username == null) {
 			
 			reloadSuccessFlag = false;
 			
@@ -130,8 +135,14 @@ public class ReloadConfigRequestHandler implements Runnable {
 			
 		// send confirmation message back to client
 		try {
-					
-			outputToClient.writeBoolean(reloadSuccessFlag);
+			
+			if (!reloadSuccessFlag)
+				outputToClient.writeByte(RELOAD_FAILED);
+			else if (header == LOGIN || (header == MODULE_UPDATE && 
+					 usingUser.equals(username)))
+				outputToClient.writeByte(USER_MATCHED);
+			else
+				outputToClient.writeByte(USER_MISMATCHED);
 			outputToClient.flush();
 				
 		} catch (IOException e) {

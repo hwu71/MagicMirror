@@ -160,11 +160,11 @@ while totalsent < len(most_common):
 	
 # receive a confirmation message from server
 success_status = connection_to_server.recv(1)
-if success_status == 0:
-	print("Failed to reload config on cloud server")
-else:
+if success_status == 1:
 	os.system("bash /home/pi/MagicMirror/modules/third_party/FaceRecognition/my_refresh.sh")
 	print("Refreshed smart mirror!")
+else:
+	print("Failed to reload config on cloud server")
 
 
 # do a bit of cleanup
