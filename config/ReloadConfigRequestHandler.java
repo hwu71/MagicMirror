@@ -20,6 +20,7 @@ public class ReloadConfigRequestHandler implements Runnable {
     // connection to app side client
     private final Socket socket;
 	private BufferedReader inputFromClient;
+    private DataOutputStream outputToClient;
 
     ReloadConfigRequestHandler(final Socket socket) {
 
@@ -28,11 +29,13 @@ public class ReloadConfigRequestHandler implements Runnable {
         try {
 
 			inputFromClient = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
+            outputToClient = new DataOutputStream(socket.getOutputStream());
 
         }
         catch (IOException e) {
 
             inputFromClient = null;
+			outputToClient = null;
             e.printStackTrace();
 
         }
@@ -47,6 +50,7 @@ public class ReloadConfigRequestHandler implements Runnable {
     public void run() {
 
         String username = null;
+		boolean reloadSuccessFlag = false;
 
         // receive a reload message with username and its length from client
         try {
@@ -64,15 +68,18 @@ public class ReloadConfigRequestHandler implements Runnable {
 
             }
             username = new String(ch, 0, usernameLength);
+			reloadSuccessFlag = true;
 
         } catch (IOException e) {
 
             e.printStackTrace();
+			reloadSuccessFlag = false;
 
         }
 
         // run a process to trigger config.js generation shell script with given username
-		if (username != null && (usingUser.equals(UNDEFINED) || usingUser.equals(username))) {
+		if (reloadSuccessFlag && username != null && 
+			(usingUser.equals(UNDEFINED) || usingUser.equals(username))) {
 			
 			System.out.println("Serving " + username + "...");
 			usingUser = username;
@@ -84,21 +91,49 @@ public class ReloadConfigRequestHandler implements Runnable {
 				final Process process = builder.start();
 				final int exitVal = process.waitFor();
 				
-				if (exitVal == 0)
-					System.out.println("Reloaded config.js for " + username + "!");
-				else
-					System.out.println("Failed to reload config.js for " + username + "!");
+				if (exitVal == 0) {
+					
+					reloadSuccessFlag = true;
+					
+				} else {
+					
+					reloadSuccessFlag = false;
+					
+				}
 				
 			} catch (IOException | InterruptedException e) {
 				
 				e.printStackTrace();
-				System.out.println("Failed to reload config.js for " + username + "!");
+				reloadSuccessFlag = false;
+
+			}
+			
+		} else {
+			
+			reloadSuccessFlag = false;
+			
+		}
+		
+		if (!reloadSuccessFlag) {
+			
+			System.out.println("Failed to reload config.js for " + username + "!");
+			
+		} else {
+			
+			// send confirmation message back to client
+			try {
+					
+				outputToClient.writeBoolean(triggerSuccessFlag);
+				outputToClient.flush();
+				System.out.println("Reloaded config.js for " + username + "!");
+				
+			} catch (IOException e) {
+
+				e.printStackTrace();
 
 			}
 			
 		}
-		
-		// TODO: refresh smart mirror webpage
 		
     }
 

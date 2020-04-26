@@ -120,9 +120,9 @@ public class PhotoCollectionRequestHandler implements Runnable {
 
         }
 		
+		// reply a confirmation message to client
 		try {
 				
-			// reply a confirmation message to client
 			outputToClient.writeBoolean(triggerSuccessFlag);
 			outputToClient.flush();
 			
