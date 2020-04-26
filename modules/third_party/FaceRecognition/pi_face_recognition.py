@@ -162,7 +162,7 @@ while totalsent < len(most_common):
 success_status = connection_to_server.recv(1)
 print("success status:") #####################
 print(success_status) ###################
-if success_status == 1:
+if success_status[0] == b'\x01':
 	os.system("bash /home/pi/MagicMirror/modules/third_party/FaceRecognition/my_refresh.sh")
 	print("Refreshed smart mirror!")
 else:
