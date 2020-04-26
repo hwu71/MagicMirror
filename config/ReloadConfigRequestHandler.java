@@ -116,7 +116,7 @@ public class ReloadConfigRequestHandler implements Runnable {
 
 			}
 			
-		} else if {
+		} else {
 			
 			reloadSuccessFlag = false;
 			
