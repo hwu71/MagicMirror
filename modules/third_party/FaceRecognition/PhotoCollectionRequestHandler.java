@@ -62,8 +62,11 @@ public class PhotoCollectionRequestHandler implements Runnable {
 			if (header == REFRESH) {
 				
 				// trigger shell script to refresh page
-				System.out.println("Refreshing smart mirror...");
-				processRunningBuilder("bash", refreshScript);
+				if (processRunningBuilder("bash", refreshScript))
+					System.out.println("Smart mirror refreshed!");
+				else
+					System.out.println("Failed to refresh smart mirror!");
+					
 					
 			} else if (header == PHOTO_COLLECTION) {
 				
