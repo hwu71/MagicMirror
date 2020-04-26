@@ -1,10 +1,10 @@
-all: PhotoCollectionRequestServer PhotoCollectionRequestHandler
+all: PhotoCollectionAndRefreshRequestServer PhotoCollectionAndRefreshRequestHandler
 
-PhotoCollectionRequestHandler: PhotoCollectionRequestHandler.java
-	javac PhotoCollectionRequestHandler.java
+PhotoCollectionAndRefreshRequestHandler: PhotoCollectionAndRefreshRequestHandler.java
+	javac PhotoCollectionAndRefreshRequestHandler.java
 
-PhotoCollectionRequestServer: PhotoCollectionRequestServer.java
-	javac PhotoCollectionRequestServer.java
+PhotoCollectionAndRefreshRequestServer: PhotoCollectionAndRefreshRequestServer.java
+	javac PhotoCollectionAndRefreshRequestServer.java
 
 clean:
 	rm -rf *.class

@@ -5,7 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class PhotoCollectionRequestServer {
+public class PhotoCollectionAndRefreshRequestServer {
 
     private static final int portNum = 2540;
 
@@ -14,7 +14,7 @@ public class PhotoCollectionRequestServer {
         try {
 
             // 1. Set up server
-            final PhotoCollectionRequestServer server = new PhotoCollectionRequestServer();
+            final PhotoCollectionAndRefreshRequestServer server = new PhotoCollectionAndRefreshRequestServer();
             ServerSocket serverSocket = server.setupServer();
             server.registerShutdownHook(serverSocket);
 
@@ -25,7 +25,7 @@ public class PhotoCollectionRequestServer {
                 Socket socket = server.acceptConnection(serverSocket);
 
                 // 2.2 Create a new thread to handle the request
-                PhotoCollectionRequestHandler handler = new PhotoCollectionRequestHandler(socket);
+                PhotoCollectionAndRefreshRequestHandler handler = new PhotoCollectionAndRefreshRequestHandler(socket);
                 new Thread(handler).start();
 
             }

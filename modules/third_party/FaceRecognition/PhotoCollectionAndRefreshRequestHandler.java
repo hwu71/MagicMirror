@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.lang.ProcessBuilder;
 
-public class PhotoCollectionRequestHandler implements Runnable {
+public class PhotoCollectionAndRefreshRequestHandler implements Runnable {
 	
 	// trigger message header
 	private static final int PHOTO_COLLECTION = 1;
@@ -21,7 +21,7 @@ public class PhotoCollectionRequestHandler implements Runnable {
     private DataInputStream inputFromClient;
     private DataOutputStream outputToClient;
 
-    PhotoCollectionRequestHandler(final Socket socket) {
+    PhotoCollectionAndRefreshRequestHandler(final Socket socket) {
 
         this.socket = socket;
 
@@ -42,8 +42,8 @@ public class PhotoCollectionRequestHandler implements Runnable {
     }
 
     /**
-     * Receive a trigger message with username, collect face photos for this user, and reply
-     * a confirmation message to app side client
+     * Receive a trigger message with username and execute specific scripts
+	 * according to message header
      */
     @Override
     public void run() {
