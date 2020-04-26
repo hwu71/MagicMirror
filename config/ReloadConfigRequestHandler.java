@@ -101,6 +101,7 @@ public class ReloadConfigRequestHandler implements Runnable {
 				if (exitVal == 0) {
 					
 					reloadSuccessFlag = true;
+					System.out.println("Reloaded config.js for " + username + "!");
 					
 				} else {
 					
@@ -123,7 +124,7 @@ public class ReloadConfigRequestHandler implements Runnable {
 		
 		if (!reloadSuccessFlag) {
 			
-			System.out.println("Failed or not eligible to reload config.js for " + username + "!");
+			System.out.println("Failed to reload config.js for " + username + "!");
 			
 		} else {
 			
@@ -132,7 +133,6 @@ public class ReloadConfigRequestHandler implements Runnable {
 					
 				outputToClient.writeBoolean(reloadSuccessFlag);
 				outputToClient.flush();
-				System.out.println("Reloaded config.js for " + username + "!");
 				
 			} catch (IOException e) {
 
