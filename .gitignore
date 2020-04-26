@@ -84,3 +84,6 @@ Temporary Items
 *.bak
 
 !/tests/node_modules/**/*
+
+# Joezie: ignore generated java classes
+**/*.class

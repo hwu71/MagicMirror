@@ -8,6 +8,11 @@ import java.lang.ProcessBuilder;
 
 public class ReloadConfigRequestHandler implements Runnable {
 	
+	// trigger message header
+	private static final int INVALID_HEADER = -1;
+	private static final int MODULE_UPDATE = 1;
+	private static final int LOGIN = 2;
+	
 	// indicate no user at cold start
 	private static final String UNDEFINED = "undefined";
 
@@ -51,10 +56,12 @@ public class ReloadConfigRequestHandler implements Runnable {
 
         String username = null;
 		boolean reloadSuccessFlag = false;
+		int header = INVALID_HEADER;
 
-        // receive a reload message with username and its length from client
+        // receive a reload message with header, username, and its length from client
         try {
 
+			header = Integer.valueOf(inputFromClient.readLine());
 			final int usernameLength = Integer.valueOf(
 				inputFromClient.readLine());
 			
@@ -78,8 +85,8 @@ public class ReloadConfigRequestHandler implements Runnable {
         }
 
         // run a process to trigger config.js generation shell script with given username
-		if (reloadSuccessFlag && username != null && 
-			(usingUser.equals(UNDEFINED) || usingUser.equals(username))) {
+		if (reloadSuccessFlag && username != null && (header == LOGIN || 
+			(header == MODULE_UPDATE && usingUser.equals(username)))) {
 			
 			System.out.println("Serving " + username + "...");
 			usingUser = username;

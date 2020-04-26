@@ -148,9 +148,9 @@ print(most_common)
 connection_to_server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 connection_to_server.connect(("34.69.18.117", 2540))
 
-# send a messsage with username's length + username to the server
-usernameLength = (str(len(most_common)) + '\n').encode('utf-8')
-connection_to_server.send(usernameLength)
+# send a messsage with LOGIN header + username's length + username to the server
+loginHeaderAndUsernameLength = (str(2) + '\n' + str(len(most_common)) + '\n').encode('utf-8')
+connection_to_server.send(loginHeaderAndUsernameLength)
 totalsent = 0
 while totalsent < len(most_common):
 	sent = connection_to_server.send(most_common[totalsent:].encode('utf-8'))
