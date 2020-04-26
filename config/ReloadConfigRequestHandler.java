@@ -115,7 +115,7 @@ public class ReloadConfigRequestHandler implements Runnable {
 
 			}
 			
-		} else {
+		} else if (username == null) {
 			
 			reloadSuccessFlag = false;
 			
@@ -123,7 +123,7 @@ public class ReloadConfigRequestHandler implements Runnable {
 		
 		if (!reloadSuccessFlag) {
 			
-			System.out.println("Failed to reload config.js for " + username + "!");
+			System.out.println("Failed or not eligible to reload config.js for " + username + "!");
 			
 		} else {
 			
