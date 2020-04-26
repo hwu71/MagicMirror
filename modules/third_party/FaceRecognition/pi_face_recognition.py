@@ -159,7 +159,7 @@ while totalsent < len(most_common):
 	totalsent = totalsent + sent
 	
 # receive a confirmation message from server
-success_status = self.sock.recv(1)
+success_status = connection_to_server.recv(1)
 if success_status == 0:
 	print("Failed to reload config on cloud server")
 else:
