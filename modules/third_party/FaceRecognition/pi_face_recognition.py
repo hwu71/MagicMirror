@@ -12,6 +12,7 @@ import pickle
 import time
 import cv2
 import socket
+import os
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
@@ -143,10 +144,11 @@ most_common = max(appear_times, key=lambda x: appear_times[x])
 print(appear_times)
 print(most_common)
 
-# connect to cloud server (34.69.18.117:2540) and send a messsage
-# with username's length + username to the server
+# connect to cloud server (34.69.18.117:2540)
 connection_to_server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 connection_to_server.connect(("34.69.18.117", 2540))
+
+# send a messsage with username's length + username to the server
 usernameLength = (str(len(most_common)) + '\n').encode('utf-8')
 connection_to_server.send(usernameLength)
 totalsent = 0
@@ -155,7 +157,14 @@ while totalsent < len(most_common):
 	if sent == 0:
 		raise RuntimeError("Send reload config request failed")
 	totalsent = totalsent + sent
-
+	
+# receive a confirmation message from server
+success_status = self.sock.recv(1)
+if success_status == 0:
+	print("Failed to reload config on cloud server")
+else:
+	os.system("bash my_refresh.sh")
+	print("Refreshed smart mirror!")
 
 
 # do a bit of cleanup
