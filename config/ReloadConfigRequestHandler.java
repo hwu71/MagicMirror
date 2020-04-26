@@ -123,7 +123,7 @@ public class ReloadConfigRequestHandler implements Runnable {
 			// send confirmation message back to client
 			try {
 					
-				outputToClient.writeBoolean(triggerSuccessFlag);
+				outputToClient.writeBoolean(reloadSuccessFlag);
 				outputToClient.flush();
 				System.out.println("Reloaded config.js for " + username + "!");
 				
