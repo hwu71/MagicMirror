@@ -7,3 +7,6 @@
 [submodule "modules/third_party/MMM-Stock"]
 	path = modules/third_party/MMM-Stock
 	url = https://github.com/hakanmhmd/MMM-Stock.git
+[submodule "modules/third_party/GoogleAssistant"]
+	path = modules/third_party/GoogleAssistant
+	url = https://github.com/hwu71/assistant-sdk-python.git
